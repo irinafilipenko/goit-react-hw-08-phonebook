@@ -1,0 +1,29 @@
+:root {
+  --color-background: whitesmoke;
+  --color-black: #010101;
+  --color-shadow: rgba(0, 0, 0, 0.5);
+  --color-blue: #2196f3;
+}
+
+body {
+  font-family: "Castoro", serif;
+  background-color: lavender;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul,
+ol {
+  padding: 0;
+  margin: 0;
+
+  list-style: none;
+}
