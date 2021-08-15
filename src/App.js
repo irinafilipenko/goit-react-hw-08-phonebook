@@ -1,46 +1,55 @@
-import s from "./App.module.css";
-// import { useSelector } from 'react-redux'
-// import { ToastContainer } from 'react-toastify'
+import { useEffect, Suspense, lazy } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "react-toastify/dist/ReactToastify.css";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-// import Loader from 'react-loader-spinner'
-import Container from "./Components/Container";
-// import Form from './Components/Form'
-// import FormList from './Components/FormList'
-// import Filter from './Components/Filter'
-// import { selectors } from './redux'
-// import { FaBook } from 'react-icons/fa'
 import { Switch, Route } from "react-router-dom";
+import { fetchCurrentUser } from "redux/auth-operation";
+import Container from "@material-ui/core/Container";
 import AppBar from "Components/AppBar";
-import HomeView from "Views/HomeView";
-import RegisterView from "Views/RegisterView";
-import LoginView from "Views/LoginView";
-import ContactsView from "Views/ContactView";
+import PrivateRoute from "Components/PrivateRoute";
+import PublicRoute from "Components/PublicRoute";
+import { getIsFetchingCurrent } from "redux/auth-selectors";
+
+const HomeView = lazy(() => import("./Views/HomeView"));
+const RegisterView = lazy(() => import("./Views/RegisterView"));
+const LoginView = lazy(() => import("./Views/LoginView"));
+const ContactsView = lazy(() => import("./Views/ContactView"));
 
 function App() {
-  // const loading = useSelector(selectors.getLoading);
-  return (
-    <Container>
-      <AppBar />
+  const dispatch = useDispatch();
+  const isFetchingCurrent = useSelector(getIsFetchingCurrent);
 
-      <Switch>
-        <Route exact path="/" component={HomeView} />
-        <Route path="/register" component={RegisterView} />
-        <Route path="/login" component={LoginView} />
-        <Route path="/contacts" component={ContactsView} />
-      </Switch>
+  useEffect(() => {
+    dispatch(fetchCurrentUser());
+  }, [dispatch]);
+
+  return (
+    <Container maxWidth="md">
+      {isFetchingCurrent ? (
+        <h2>make spinner</h2>
+      ) : (
+        <>
+          <AppBar />
+
+          <Switch>
+            <Suspense fallback={<h2>...LOADING</h2>}>
+              <PublicRoute exact path="/">
+                <HomeView />
+              </PublicRoute>
+              <PublicRoute path="/register" restricted>
+                <RegisterView />
+              </PublicRoute>
+              <PublicRoute path="/login" restricted redirectTo="/contacts">
+                <LoginView />
+              </PublicRoute>
+              <PrivateRoute path="/contacts" redirectTo="/login">
+                <ContactsView />
+              </PrivateRoute>
+            </Suspense>
+          </Switch>
+        </>
+      )}
     </Container>
-    // <Container title="Phonebook">
-    //   <ToastContainer autoClose={3000} />
-    //   <FaBook size="50" className={s.bookIcon} />
-    //   <Form />
-    //   <h2 className={s.caption}>Contacts</h2>
-    //   <Filter />
-    //   <FormList />
-    //   {loading && (
-    //     <Loader type="Audio" color="#00BFFF" height={80} width={80} />
-    //   )}
-    // </Container>
   );
 }
 

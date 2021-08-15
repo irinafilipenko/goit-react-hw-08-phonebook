@@ -78,7 +78,7 @@ export const fetchCurrentUser = createAsyncThunk(
       return thunkAPI.rejectWithValue();
     }
 
-    // token.set(persistedToken)
+    token.set(persistedToken);
     try {
       const { data } = await axios.get("/users/current");
       return data;
@@ -87,10 +87,3 @@ export const fetchCurrentUser = createAsyncThunk(
     }
   }
 );
-
-// const operations = {
-//   register,
-//   logOut,
-//   logIn,
-//   fetchCurrentUser,
-// }
