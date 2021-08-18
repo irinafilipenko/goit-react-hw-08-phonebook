@@ -7,9 +7,9 @@ export const fetchContacts = () => {
 };
 
 export const fetchAddContact = (contact) => {
-  return axios.post(`https://connections-api.herokuapp.com/contacts`, contact);
+  return axios.post(`/contacts`, contact);
 };
 
 export const fetchDeleteContact = (id) => {
-  return axios.delete(`https://connections-api.herokuapp.com/contacts/${id}`);
+  return axios.delete(`/contacts/${id}`);
 };

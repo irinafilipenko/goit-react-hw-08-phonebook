@@ -1,9 +1,9 @@
-import axios from "axios";
+// import axios from "axios";
 import {
   fetchContacts,
   fetchAddContact,
   fetchDeleteContact,
-} from "services/contactsApi";
+} from "../../services/contactsApi";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 // import {
 //   addContactError,

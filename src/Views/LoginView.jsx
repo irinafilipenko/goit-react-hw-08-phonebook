@@ -1,15 +1,13 @@
+import React from 'react'
+import { TextField } from '@material-ui/core'
+import Button from '@material-ui/core/Button'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { logIn } from '../redux/auth-operation'
+import { logIn } from '../redux/auth/auth-operation'
 
 const styles = {
   form: {
     width: 320,
-  },
-  label: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginBottom: 15,
   },
 }
 
@@ -41,27 +39,31 @@ export default function LoginView() {
       <h1>Страница логина</h1>
 
       <form onSubmit={handleSubmit} style={styles.form} autoComplete="off">
-        <label style={styles.label}>
-          Почта
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleChange}
-          />
-        </label>
+        <TextField
+          id="outlined-basic"
+          label="Mail"
+          variant="outlined"
+          margin="dense"
+          type="email"
+          name="email"
+          value={email}
+          onChange={handleChange}
+        />
 
-        <label style={styles.label}>
-          Пароль
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={handleChange}
-          />
-        </label>
+        <TextField
+          id="outlined-basic"
+          label="Password"
+          variant="outlined"
+          margin="dense"
+          type="password"
+          name="password"
+          value={password}
+          onChange={handleChange}
+        />
 
-        <button type="submit">Войти</button>
+        <Button variant="contained" color="primary" type="submit">
+          to come in
+        </Button>
       </form>
     </div>
   )

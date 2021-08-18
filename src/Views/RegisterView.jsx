@@ -1,15 +1,13 @@
+import React from 'react'
+import Button from '@material-ui/core/Button'
+import { TextField } from '@material-ui/core'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { register } from '../redux/auth-operation'
+import { register } from '../redux/auth/auth-operation'
 
 const styles = {
   form: {
     width: 320,
-  },
-  label: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginBottom: 15,
   },
 }
 
@@ -45,32 +43,43 @@ export default function RegisterView() {
       <h1>Страница регистрации</h1>
 
       <form onSubmit={handleSubmit} style={styles.form} autoComplete="off">
-        <label style={styles.label}>
-          Имя
-          <input type="text" name="name" value={name} onChange={handleChange} />
-        </label>
+        <TextField
+          id="outlined-basic"
+          label="Name"
+          variant="outlined"
+          margin="dense"
+          size="medium"
+          type="text"
+          name="name"
+          value={name}
+          onChange={handleChange}
+        />
 
-        <label style={styles.label}>
-          Почта
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleChange}
-          />
-        </label>
+        <TextField
+          id="outlined-basic"
+          label="Mail"
+          variant="outlined"
+          margin="dense"
+          type="email"
+          name="email"
+          value={email}
+          onChange={handleChange}
+        />
 
-        <label style={styles.label}>
-          Пароль
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={handleChange}
-          />
-        </label>
+        <TextField
+          id="outlined-basic"
+          label="Password"
+          variant="outlined"
+          margin="dense"
+          type="password"
+          name="password"
+          value={password}
+          onChange={handleChange}
+        />
 
-        <button type="submit">Зарегистрироваться</button>
+        <Button variant="contained" color="primary" type="submit">
+          register
+        </Button>
       </form>
     </div>
   )

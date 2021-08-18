@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { getIsLoggedIn } from 'redux/auth-selectors'
+import { getIsLoggedIn } from 'redux/auth/auth-selectors'
 
 const styles = {
   link: {

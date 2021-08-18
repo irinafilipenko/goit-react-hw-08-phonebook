@@ -1,7 +1,9 @@
+import React from 'react'
+import Button from '@material-ui/core/Button'
 import { useDispatch, useSelector } from 'react-redux'
-import { getUsername } from '../redux/auth-selectors'
-import { logOut } from '../redux/auth-operation'
-// import defaultAvatar from './default-avatar.png';
+import { getUsername } from '../redux/auth/auth-selectors'
+import { logOut } from '../redux/auth/auth-operation'
+
 import { GiBatMask } from 'react-icons/gi'
 
 const styles = {
@@ -21,16 +23,24 @@ const styles = {
 export default function UserMenu() {
   const dispatch = useDispatch()
   const name = useSelector(getUsername)
-  //   const avatar = defaultAvatar;
 
   return (
     <div style={styles.container}>
       <GiBatMask />
-      {/* <img src={avatar} alt="" width="32" style={styles.avatar} /> */}
+
       <span style={styles.name}>Добро пожаловать, {name}</span>
-      <button type="button" onClick={() => dispatch(logOut())}>
+      {/* <button type="button" onClick={() => dispatch(logOut())}>
         Выйти
-      </button>
+      </button> */}
+      <Button
+        variant="contained"
+        color="primary"
+        type="button"
+        size="small"
+        onClick={() => dispatch(logOut())}
+      >
+        go out
+      </Button>
     </div>
   )
 }

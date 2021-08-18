@@ -1,10 +1,11 @@
 import PropTypes from "prop-types";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import Button from "@material-ui/core/Button";
 import style from "./FormList.module.css";
 import s from "../Form/Form.module.css";
 import { FaPhoneAlt, FaRegTrashAlt } from "react-icons/fa";
-import { operation, selectors } from "../../redux";
+import { operation, selectors } from "../../redux/contacts";
 
 const ContactsList = () => {
   const contacts = useSelector(selectors.getVisibleContacts);
@@ -28,9 +29,19 @@ const ContactsList = () => {
               <FaPhoneAlt className={style.statusClass} /> {name}
             </p>
             <p className={style.textNamber}>{number}</p>
-            <button className={s.button} onClick={() => onDeleteContact(id)}>
+
+            <Button
+              variant="contained"
+              color="primary"
+              type="submit"
+              onClick={() => onDeleteContact(id)}
+            >
               Delete <FaRegTrashAlt />
-            </button>
+            </Button>
+
+            {/* <button className={s.button} onClick={() => onDeleteContact(id)}>
+              Delete <FaRegTrashAlt />
+            </button> */}
           </li>
         ))}
     </ul>
