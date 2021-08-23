@@ -28,7 +28,6 @@ function App() {
     <Container maxWidth="md">
       {isFetchingCurrent ? (
         <h2>
-          {" "}
           <GalleryLoader />
         </h2>
       ) : (
