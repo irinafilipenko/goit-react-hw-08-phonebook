@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Button from "@material-ui/core/Button";
 import { TextField } from "@material-ui/core";
-
+// import { getContactEdit } from 'redux/contacts/selectors'
 import { toast } from "react-toastify";
 import s from "./Form.module.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,6 +12,7 @@ export default function Form() {
   const [number, setNumber] = useState("");
   const dispatch = useDispatch();
   const contacts = useSelector(selectors.getContacts);
+  // const contactEdit = useSelector(getContactEdit)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -51,7 +52,6 @@ export default function Form() {
         label="Name"
         variant="outlined"
         margin="dense"
-        fullWidth
         type="text"
         name="name"
         value={name}
@@ -66,7 +66,6 @@ export default function Form() {
         label="Number"
         variant="outlined"
         margin="dense"
-        fullWidth
         type="tel"
         name="number"
         pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -77,6 +76,7 @@ export default function Form() {
       />
 
       <Button
+        className={s.button}
         variant="contained"
         color="primary"
         type="submit"

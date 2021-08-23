@@ -16,6 +16,7 @@ export const getVisibleContacts = createSelector(
   }
 );
 
+// export const getContactEdit = (state) => state.contacts.edit
 // export const getVisibleContacts = (state) => {
 //   const contacts = getContacts(state)
 //   const filter = getFilter(state)

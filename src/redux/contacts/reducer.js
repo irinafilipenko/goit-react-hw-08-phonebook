@@ -1,13 +1,24 @@
 // import { combineReducers } from 'redux'
 // import { createReducer} from '@reduxjs/toolkit'
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchContact, addContact, deleteContact } from "./operation";
+import {
+  fetchContact,
+  addContact,
+  deleteContact,
+  // editContact,
+} from "./operation";
 
 import { changeFilter } from "./actions";
 
 const contactSlice = createSlice({
   name: "contacts",
-  initialState: { items: [], filter: "", loading: false, error: null },
+  initialState: {
+    items: [],
+    filter: "",
+    loading: false,
+    error: null,
+    edit: null,
+  },
   extraReducers: {
     [fetchContact.fulfilled]: (state, { payload }) => {
       state.items = payload;
@@ -45,6 +56,14 @@ const contactSlice = createSlice({
       state.error = payload;
       state.loading = false;
     },
+    // [editContact.fulfilled]: (state, { payload }) => {
+    //   state.items = state.items.map((contact) =>
+    //     contact.id === payload.id ? payload : contact,
+    //   )
+    //   state.edit = payload
+    //   state.loading = false
+    //   state.error = null
+    // },
     [changeFilter]: (state, { payload }) => {
       state.filter = payload;
       state.loading = false;

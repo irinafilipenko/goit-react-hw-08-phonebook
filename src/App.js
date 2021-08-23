@@ -2,18 +2,19 @@ import { useEffect, Suspense, lazy } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "react-toastify/dist/ReactToastify.css";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import { Switch, Route } from "react-router-dom";
+import { Switch } from "react-router-dom";
 import { fetchCurrentUser } from "redux/auth/auth-operation";
 import Container from "@material-ui/core/Container";
 import AppBar from "Components/AppBar";
 import PrivateRoute from "Components/PrivateRoute";
 import PublicRoute from "Components/PublicRoute";
 import { getIsFetchingCurrent } from "redux/auth/auth-selectors";
+import { GalleryLoader } from "./Components/Loader/Loader";
 
 const HomeView = lazy(() => import("./Views/HomeView"));
 const RegisterView = lazy(() => import("./Views/RegisterView"));
 const LoginView = lazy(() => import("./Views/LoginView"));
-const ContactsView = lazy(() => import("./Views/ContactView"));
+const ContactsView = lazy(() => import("./Views/ContactView/ContactView"));
 
 function App() {
   const dispatch = useDispatch();
@@ -26,13 +27,22 @@ function App() {
   return (
     <Container maxWidth="md">
       {isFetchingCurrent ? (
-        <h2>make spinner</h2>
+        <h2>
+          {" "}
+          <GalleryLoader />
+        </h2>
       ) : (
         <>
           <AppBar />
 
           <Switch>
-            <Suspense fallback={<h2>...LOADING</h2>}>
+            <Suspense
+              fallback={
+                <h2>
+                  <GalleryLoader />
+                </h2>
+              }
+            >
               <PublicRoute exact path="/">
                 <HomeView />
               </PublicRoute>

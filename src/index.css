@@ -1,13 +1,12 @@
 :root {
-  --color-background: whitesmoke;
+  --color-background: white;
   --color-black: #010101;
   --color-shadow: rgba(0, 0, 0, 0.5);
-  --color-blue: #2196f3;
+  --color-blue: #3f51b5;
 }
 
 body {
   font-family: "Castoro", serif;
-  background-color: lavender;
 }
 
 img {

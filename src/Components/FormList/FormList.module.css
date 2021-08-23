@@ -1,5 +1,7 @@
 .list {
+  display: block;
   padding: 0;
+  margin: 0 auto;
 }
 .item {
   display: flex;
@@ -26,5 +28,9 @@
 
 .statusClass {
   margin-right: 10px;
+  color: var(--color-blue);
+}
+
+.statusClassIcon {
   color: var(--color-blue);
 }

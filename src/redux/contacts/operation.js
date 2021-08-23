@@ -3,6 +3,7 @@ import {
   fetchContacts,
   fetchAddContact,
   fetchDeleteContact,
+  fetchEditContact,
 } from "../../services/contactsApi";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 // import {
@@ -24,7 +25,6 @@ export const fetchContact = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const { data } = await fetchContacts();
-      // axios.get("./contacts");
       return data;
     } catch (error) {
       return rejectWithValue(error);
@@ -42,7 +42,6 @@ export const addContact = createAsyncThunk(
         number,
       };
       const { data } = await fetchAddContact(newContact);
-      // axios.post('./contacts', newContact)
       return data;
     } catch (error) {
       return rejectWithValue(error);
@@ -56,8 +55,6 @@ export const deleteContact = createAsyncThunk(
   async (id, { rejectWithValue }) => {
     try {
       await fetchDeleteContact(id);
-      // axios.delete(`./contacts/${id}`)
-
       return id;
     } catch (error) {
       return rejectWithValue(error);
@@ -65,39 +62,14 @@ export const deleteContact = createAsyncThunk(
   }
 );
 
-// export const deleteContact = (id) => (dispatch) => {
-//   dispatch(deleteContactRequest())
-
-//   axios
-//     .delete(`./contacts/${id}`)
-//     .then(() => dispatch(deleteContactSuccess(id)))
-//     .catch((error) => dispatch(deleteContactError(error)))
-// }
-
-// export const fetchContact = () => async (dispatch) => {
-//   dispatch(fetchContactRequest())
-
-//   try {
-//     const { data } = await axios.get('./contacts')
-//     dispatch(fetchContactSuccess(data))
-//   } catch (error) {
-//     dispatch(fetchContactError(error))
-//   }
-// }
-
-// export const addContact = ({ name, number }) => async (dispatch) => {
-//   const newContact = {
-//     name,
-//     number,
-//   }
-
-//   dispatch(addContactRequest())
-
-//   try {
-//     const { data } = await axios.post('./contacts', newContact)
-//     dispatch(addContactSuccess(data))
-//   } catch (error) {
-//     dispatch(addContactError(error))
-//   }
-
-// }
+export const editContact = createAsyncThunk(
+  "contacts/editContact",
+  async (item, { rejectWithValue }) => {
+    try {
+      const { data } = await fetchEditContact(item);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);

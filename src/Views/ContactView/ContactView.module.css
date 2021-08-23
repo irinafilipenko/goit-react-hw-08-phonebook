@@ -1,9 +1,12 @@
 .caption {
   font-weight: normal;
   font-size: 32px;
+  text-align: center;
 }
 
 .bookIcon {
   position: absolute;
-  top: 10%;
+  top: 30%;
+  left: 30%;
+  color: var(--color-blue);
 }

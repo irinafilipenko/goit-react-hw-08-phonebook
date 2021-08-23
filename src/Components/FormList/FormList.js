@@ -1,10 +1,11 @@
 import PropTypes from "prop-types";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import DeleteIcon from "@material-ui/icons/Delete";
+// import EditIcon from '@material-ui/icons/Edit'
 import style from "./FormList.module.css";
-import s from "../Form/Form.module.css";
-import { FaPhoneAlt, FaRegTrashAlt } from "react-icons/fa";
+import { FaPhoneAlt } from "react-icons/fa";
 import { operation, selectors } from "../../redux/contacts";
 
 const ContactsList = () => {
@@ -15,6 +16,11 @@ const ContactsList = () => {
     dispatch(operation.deleteContact(id));
     console.log(id);
   };
+
+  // const onAddContact = (contacts) => {
+  //   dispatch(operation.editContact(contacts))
+  //   console.log(contacts)
+  // }
 
   useEffect(() => {
     dispatch(operation.fetchContact());
@@ -30,18 +36,22 @@ const ContactsList = () => {
             </p>
             <p className={style.textNamber}>{number}</p>
 
-            <Button
-              variant="contained"
-              color="primary"
-              type="submit"
+            <IconButton
+              edge="end"
+              aria-label="delete"
               onClick={() => onDeleteContact(id)}
             >
-              Delete <FaRegTrashAlt />
-            </Button>
-
-            {/* <button className={s.button} onClick={() => onDeleteContact(id)}>
-              Delete <FaRegTrashAlt />
-            </button> */}
+              <DeleteIcon className={style.statusClassIcon} />
+            </IconButton>
+            {/* <IconButton
+              edge="end"
+              aria-label="delete"
+              onClick={() =>
+                dispatch(operation.editContact({ id, name, number }))
+              }
+            >
+              <EditIcon />
+            </IconButton> */}
           </li>
         ))}
     </ul>
