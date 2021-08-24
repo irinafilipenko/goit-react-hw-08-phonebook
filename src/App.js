@@ -27,21 +27,13 @@ function App() {
   return (
     <Container maxWidth="md">
       {isFetchingCurrent ? (
-        <h2>
-          <GalleryLoader />
-        </h2>
+        <GalleryLoader />
       ) : (
         <>
           <AppBar />
 
           <Switch>
-            <Suspense
-              fallback={
-                <h2>
-                  <GalleryLoader />
-                </h2>
-              }
-            >
+            <Suspense fallback={<GalleryLoader />}>
               <PublicRoute exact path="/">
                 <HomeView />
               </PublicRoute>
